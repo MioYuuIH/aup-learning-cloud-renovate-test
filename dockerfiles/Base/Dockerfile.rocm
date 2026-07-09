@@ -209,7 +209,7 @@ ARG NOTEBOOK_VERSION="7.5.5"
 # renovate: datasource=pypi depName=ipywidgets versioning=pep440
 ARG IPYWIDGETS_VERSION="8.1.8"
 # renovate: datasource=pypi depName=ipykernel versioning=pep440
-ARG IPYKERNEL_VERSION="6.31.0"
+ARG IPYKERNEL_VERSION="7.3.0"
 RUN pip3 install --no-cache-dir \
     jupyterhub=="${JUPYTERHUB_VERSION}" \
     jupyterlab=="${JUPYTERLAB_VERSION}" \

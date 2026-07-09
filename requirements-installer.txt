@@ -6,5 +6,5 @@
 # Or, equivalently, via pyproject.toml's optional-dependencies group:
 #   pip install -e .[installer]
 
-questionary>=2.0.1
+questionary>=2.1.1
 prompt_toolkit>=3.0.43

@@ -29,7 +29,7 @@ FROM node-runtime AS hub-link-builder
 
 ARG NPM_REGISTRY=
 # renovate: datasource=npm depName=pnpm versioning=npm
-ARG PNPM_VERSION=10.27.0
+ARG PNPM_VERSION=10.34.5
 WORKDIR /build/runtime
 
 RUN npm install -g pnpm@${PNPM_VERSION}
@@ -50,7 +50,7 @@ ARG CODE_SERVER_VERSION=4.96.4
 ARG IMAGE_FLAVOR
 ARG NPM_REGISTRY=
 # renovate: datasource=npm depName=pnpm versioning=npm
-ARG PNPM_VERSION=10.27.0
+ARG PNPM_VERSION=10.34.5
 ARG CODE_GLOBAL_NPM_PACKAGES
 # renovate: datasource=github-releases depName=prefix-dev/pixi
 ARG PIXI_VERSION=v0.68.1

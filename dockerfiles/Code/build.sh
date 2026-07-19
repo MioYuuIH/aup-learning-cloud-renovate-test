@@ -23,7 +23,7 @@ ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 NODE_IMAGE="${NODE_IMAGE:-docker.io/library/node:22-bookworm-slim}"
 NPM_REGISTRY="${NPM_REGISTRY:-}"
 # renovate: datasource=npm depName=pnpm versioning=npm
-PNPM_VERSION="${PNPM_VERSION:-10.27.0}"
+PNPM_VERSION="${PNPM_VERSION:-10.34.5}"
 CODE_GLOBAL_NPM_PACKAGES="${CODE_GLOBAL_NPM_PACKAGES:-typescript tsx vite eslint prettier}"
 
 docker build \

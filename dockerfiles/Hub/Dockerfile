@@ -23,7 +23,7 @@ ARG HUB_IMAGE=quay.io/jupyterhub/k8s-hub:4.3.3
 ARG NPM_REGISTRY=
 ARG PIP_INDEX_URL=
 # renovate: datasource=npm depName=pnpm versioning=npm
-ARG PNPM_VERSION="10.27.0"
+ARG PNPM_VERSION="10.34.5"
 
 # Stage 1: Build frontend (monorepo)
 FROM ${NODE_IMAGE} AS frontend-builder

@@ -17,7 +17,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-ARG NODE_IMAGE=docker.io/library/node:22-bookworm-slim
+ARG NODE_IMAGE=docker.io/library/node:22.23.1-bookworm-slim
 ARG BASE_IMAGE=ghcr.io/amdresearch/auplc-default:latest
 ARG IMAGE_FLAVOR=cpu
 # renovate: datasource=github-releases depName=coder/code-server

@@ -10,7 +10,7 @@
     "url": "https://github.com/AMDResearch/aup-learning-cloud"
   },
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.134.0"
   },
   "categories": [
     "Other"
@@ -37,11 +37,11 @@
     "@auplc/runtime-status": "workspace:*"
   },
   "devDependencies": {
-    "@types/vscode": "^1.80.0",
-    "@types/node": "^22.15.30",
-    "@vscode/vsce": "^3.7.0",
-    "esbuild": "^0.27.3",
-    "typescript": "^5.4.5"
+    "@types/vscode": "^1.134.0",
+    "@types/node": "^22.20.1",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3"
   },
   "files": [
     "out",

@@ -21,7 +21,7 @@ ARG NODE_IMAGE=docker.io/library/node:22-bookworm-slim
 ARG BASE_IMAGE=ghcr.io/amdresearch/auplc-default:latest
 ARG IMAGE_FLAVOR=cpu
 # renovate: datasource=github-releases depName=coder/code-server
-ARG CODE_SERVER_VERSION=4.96.4
+ARG CODE_SERVER_VERSION=4.133.0
 
 FROM ${NODE_IMAGE} AS node-runtime
 
@@ -46,7 +46,7 @@ RUN pnpm --filter @auplc/runtime-status run build && \
 FROM ${BASE_IMAGE}
 
 # renovate: datasource=github-releases depName=coder/code-server
-ARG CODE_SERVER_VERSION=4.96.4
+ARG CODE_SERVER_VERSION=4.133.0
 ARG IMAGE_FLAVOR
 ARG NPM_REGISTRY=
 # renovate: datasource=npm depName=pnpm versioning=npm

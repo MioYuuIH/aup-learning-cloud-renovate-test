@@ -53,7 +53,7 @@ ARG NPM_REGISTRY=
 ARG PNPM_VERSION=10.27.0
 ARG CODE_GLOBAL_NPM_PACKAGES
 # renovate: datasource=github-releases depName=prefix-dev/pixi
-ARG PIXI_VERSION=v0.68.1
+ARG PIXI_VERSION=v0.77.0
 ARG PIXI_DOWNLOAD_URL=
 ARG PIXI_CONDA_FORGE_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
 USER root

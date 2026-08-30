@@ -113,7 +113,7 @@ jobs:
       base-cpu-image: ${{ steps.names.outputs.base-cpu }}
       base-gpu-image: ${{ steps.names.outputs.base-gpu }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set registry prefix
         id: registry
@@ -165,7 +165,7 @@ jobs:
           echo "courses=${COURSES}" >> "$GITHUB_OUTPUT"
           echo "gpu-map=${GPU_MAP}" >> "$GITHUB_OUTPUT"
 
-      - uses: dorny/paths-filter@v3
+      - uses: dorny/paths-filter@v4
         if: github.ref_type != 'tag' && github.event_name != 'workflow_dispatch'
         id: filter
         with:
@@ -214,7 +214,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
@@ -228,11 +228,11 @@ jobs:
           swap-storage: false
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Login to GitHub Container Registry
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -240,7 +240,7 @@ jobs:
 
       - name: Docker metadata
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ needs.changes.outputs.hub-image }}
           tags: |
@@ -254,7 +254,7 @@ jobs:
             type=ref,event=pr
 
       - name: Build and push Hub image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: dockerfiles/Hub/Dockerfile
@@ -291,7 +291,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
@@ -304,14 +304,14 @@ jobs:
           docker-images: true
           swap-storage: false
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
-          version: 10.27.0
+          version: 11.23.0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24.19.0'
           cache: pnpm
           cache-dependency-path: runtime/pnpm-lock.yaml
 
@@ -333,11 +333,11 @@ jobs:
           rm -f runtime/code-server/extensions/auplc-hub-link/auplc-hub-link-*.vsix
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Login to GitHub Container Registry
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -345,7 +345,7 @@ jobs:
 
       - name: Docker metadata
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ needs.changes.outputs.code-cpu-image }}
           tags: |
@@ -358,7 +358,7 @@ jobs:
             type=ref,event=pr
 
       - name: Build and push Code CPU image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: dockerfiles/Code/Dockerfile
@@ -385,7 +385,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
@@ -399,11 +399,11 @@ jobs:
           swap-storage: false
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Login to GitHub Container Registry
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -411,7 +411,7 @@ jobs:
 
       - name: Docker metadata
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ needs.changes.outputs.base-cpu-image }}
           tags: |
@@ -423,7 +423,7 @@ jobs:
             type=ref,event=pr
 
       - name: Build and push Base CPU image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: dockerfiles/Base/Dockerfile.cpu
@@ -464,7 +464,7 @@ jobs:
         gpu_target: ${{ fromJSON(needs.changes.outputs.gpu-targets) }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
@@ -477,14 +477,14 @@ jobs:
           docker-images: true
           swap-storage: false
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
-          version: 10.27.0
+          version: 11.23.0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24.19.0'
           cache: pnpm
           cache-dependency-path: runtime/pnpm-lock.yaml
 
@@ -506,11 +506,11 @@ jobs:
           rm -f runtime/code-server/extensions/auplc-hub-link/auplc-hub-link-*.vsix
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Login to GitHub Container Registry
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -518,7 +518,7 @@ jobs:
 
       - name: Docker metadata (target-suffixed tags)
         id: meta-suffixed
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ needs.changes.outputs.code-gpu-image }}
           flavor: |
@@ -537,7 +537,7 @@ jobs:
       - name: Docker metadata (unsuffixed tags — default target only)
         if: matrix.gpu_target == needs.changes.outputs.default-gpu-target
         id: meta-default
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ needs.changes.outputs.code-gpu-image }}
           tags: |
@@ -567,7 +567,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Build and push Code GPU image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: dockerfiles/Code/Dockerfile
@@ -604,7 +604,7 @@ jobs:
       image: ${{ steps.out.outputs.image }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
@@ -618,11 +618,11 @@ jobs:
           swap-storage: false
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Login to GitHub Container Registry
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -640,7 +640,7 @@ jobs:
 
       - name: Docker metadata (target-suffixed tags)
         id: meta-suffixed
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ needs.changes.outputs.base-gpu-image }}
           flavor: |
@@ -659,7 +659,7 @@ jobs:
       - name: Docker metadata (unsuffixed tags — default target only)
         if: matrix.gpu_target == needs.changes.outputs.default-gpu-target
         id: meta-default
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ needs.changes.outputs.base-gpu-image }}
           tags: |
@@ -690,7 +690,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Build and push Base GPU image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: dockerfiles/Base/Dockerfile.rocm
@@ -742,7 +742,7 @@ jobs:
         gpu_target: ${{ fromJSON(needs.changes.outputs.gpu-targets) }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
@@ -756,10 +756,10 @@ jobs:
           swap-storage: false
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -796,7 +796,7 @@ jobs:
 
       - name: Docker metadata (target-suffixed tags)
         id: meta-suffixed
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ needs.changes.outputs.registry }}/${{ steps.meta-inputs.outputs.image_name }}
           flavor: |
@@ -815,7 +815,7 @@ jobs:
       - name: Docker metadata (unsuffixed tags — default target only)
         if: matrix.gpu_target == needs.changes.outputs.default-gpu-target
         id: meta-default
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ needs.changes.outputs.registry }}/${{ steps.meta-inputs.outputs.image_name }}
           tags: |
@@ -846,7 +846,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Build and push ${{ matrix.course }} (${{ matrix.gpu_target }}) image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: dockerfiles/Courses/${{ matrix.course }}
           file: dockerfiles/Courses/${{ matrix.course }}/Dockerfile

@@ -38,10 +38,10 @@
   },
   "devDependencies": {
     "@types/vscode": "^1.80.0",
-    "@types/node": "^22.15.30",
+    "@types/node": "^24.13.3",
     "@vscode/vsce": "^3.7.0",
     "esbuild": "^0.27.3",
-    "typescript": "^5.4.5"
+    "typescript": "^7.0.2"
   },
   "files": [
     "out",

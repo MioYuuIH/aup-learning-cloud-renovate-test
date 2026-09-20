@@ -83,12 +83,12 @@ jobs:
         run: df -h /
 
       - name: Checkout code at the release tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -141,7 +141,7 @@ jobs:
 
       - name: Upload bundle as artifact
         if: steps.check.outputs.skip != 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: auplc-bundle-${{ matrix.gpu_type }}
           path: auplc-bundle-*.tar.gz
@@ -188,10 +188,10 @@ jobs:
         run: df -h /
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -219,7 +219,7 @@ jobs:
           echo "Bundle: ${BUNDLE}"
           echo "Size: $(du -sh "${BUNDLE}" | cut -f1)"
       - name: Upload bundle as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: auplc-bundle-${{ inputs.gpu_type }}
           path: auplc-bundle-*.tar.gz
